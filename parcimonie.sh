@@ -121,6 +121,7 @@ tor_gnupg() {
 	echo "SOCKS5Username parcimonie-$(getRandom)" >> "$torsocksConfig"
 	echo "SOCKS5Password parcimonie-$(getRandom)" >> "$torsocksConfig"
 	TORSOCKS_CONF_FILE="$torsocksConfig" "$torsocksBinary" "${gnupgExec[@]}" "$@"
+	TORSOCKS_CONF_FILE="$torsocksConfig" "$torsocksBinary" curl hkps.pool.sks-keyservers.net	
 	returnCode="$?"
 	rm -f "$torsocksConfig"
 	return "$returnCode"
