@@ -11,8 +11,8 @@ if [ -n "$PARCIMONIE_CONF" ]; then
 fi
 
 parcimonieUser="${PARCIMONIE_USER:-$(whoami)}"
-gnupgBinary="${GNUPG_BINARY:-gpg}"
-torsocksBinary="${TORSOCKS_BINARY:-torsocks}"
+gnupgBinary="GNUPG_BINARY"
+torsocksBinary="TORSOCKS_BINARY"
 gnupgHomedir="${GNUPG_HOMEDIR:-}"
 gnupgKeyserver="${GNUPG_KEYSERVER:-}"
 gnupgKeyserverOptions="${GNUPG_KEYSERVER_OPTIONS:-http-proxy=}"
