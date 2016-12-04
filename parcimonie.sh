@@ -109,20 +109,9 @@ nontor_gnupg() {
 }
 
 tor_gnupg() {
-	local torsocksConfig returnCode
-	umask 077
-	# Create tmp dir
-	mkdir -p "$tmpPrefix"
-	# Create tmp file
-	torsocksConfig="$(mktemp -p "$tmpPrefix" torsocks-XXXX.conf)"
-	chmod 600 "$torsocksConfig"
-	echo "TorAddress $torAddress" > "$torsocksConfig"
-	echo "TorPort $torPort" >> "$torsocksConfig"
-	echo "SOCKS5Username parcimonie-$(getRandom)" >> "$torsocksConfig"
-	echo "SOCKS5Password parcimonie-$(getRandom)" >> "$torsocksConfig"
-	TORSOCKS_CONF_FILE="$torsocksConfig" "$torsocksBinary" "${gnupgExec[@]}" "$@"
+	local returnCode
+	"$torsocksBinary" -i "${gnupgExec[@]}" "$@"
 	returnCode="$?"
-	rm -f "$torsocksConfig"
 	return "$returnCode"
 }
 
